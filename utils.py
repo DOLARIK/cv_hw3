@@ -160,3 +160,30 @@ def draw_matches(left, right, pairs, set_inches = (18.5, 10.5)):
     
     
     figure.set_size_inches(set_inches[0], set_inches[1])
+
+def save_pairs(pairs, name):
+    pairs_json = []
+    for pair in pairs:
+        element = [[int(pair[0][0]), int(pair[0][1])], [int(pair[1][0]), int(pair[1][1])], float(pairs[pair])]
+        pairs_json.append(element)
+    
+    # print(pairs_json)
+
+    with open(name, 'w') as f:
+        json.dump(pairs_json, f)
+
+def load_pairs(name):
+    pairs_json = json.load(open(name))
+
+    pairs = {}
+    for element in pairs_json:
+        lkp = element[0]
+        rkp = element[1]
+        score = element[2]
+        pairs[(tuple(lkp), tuple(rkp))] = score
+
+    return pairs
+
+def get_top_pairs(pairs, top_n=50):
+    top_pairs = {k:pairs[k] for k in list(pairs.keys())[:top_n]}
+    return top_pairs

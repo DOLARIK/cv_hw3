@@ -30,7 +30,7 @@ class FeaturePairer:
             sorted_pairs = {k: v for k, v in sorted(pairs.items(), 
                                                     key=lambda item: item[1],
                                                     reverse=True)}
-        elif self.similarity == 'ncc':
+        elif self.similarity == 'ssd':
             sorted_pairs = {k: v for k, v in sorted(pairs.items(), 
                                                     key=lambda item: item[1],
                                                     reverse=False)}

@@ -17,13 +17,17 @@ class Hessian:
 		self.smoothing_std = smoothing_std
 
 
-	def __call__(self, image):
+	def __call__(self, image, threshold = 2):
 		gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 		gray_extend = np.dstack([gray for i in range(3)])
 		Ix, Iy = self._get_first_order_derivatives(gray_extend)
 		Ixx, Ixy, Iyx, Iyy = self._get_second_order_derivative(Ix, Iy)
 
-		hessian = Ixx*Iyy - Ixy*Iyx
+		hessian_det = Ixx*Iyy - Ixy*Iyx
+
+		hessian_norm = 255*hessian_det/hessian_det.max()
+
+		hessian = hessian_norm*np.asarray(hessian_norm > threshold, dtype='float')
 
 		return hessian
 
