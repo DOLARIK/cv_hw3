@@ -1,6 +1,6 @@
 FROM python:3.6
 
-ENV JUPYTER_TOKEN dev
+ENV JUPYTER_TOKEN dgupta12_psood_asg3
 
 # Pick up some general dependencies
 RUN apt-get update \
