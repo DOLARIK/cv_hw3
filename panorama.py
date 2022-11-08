@@ -30,7 +30,7 @@ class Panorama:
         elif transform == 'right':
             return np.linalg.inv(self.affine)
 
-    def stitch(self, transform):
+    def stitch(self, transform, edge_blend = False):
         background = np.zeros(self.background_dims)
 
         first, second = self._get_first_and_second_image(transform)
@@ -59,11 +59,12 @@ class Panorama:
                 if background[int(y_proj), int(x_proj), 0] > 0:
 
 
-
-                    a = ((x/second.shape[1])**2 + (y/second.shape[0])**2)**0.5
-                    b = (((first.shape[1] - (int(x_proj) - del_first_x))/first.shape[1])**2 + ((first.shape[0] - (int(y_proj) - del_first_y))/first.shape[0])**2)**.5
-
-                    alpha = a/(a+b)
+                    if edge_blend:
+                        a = ((x/second.shape[1])**2 + (y/second.shape[0])**2)**0.5
+                        b = (((first.shape[1] - (int(x_proj) - del_first_x))/first.shape[1])**2 + ((first.shape[0] - (int(y_proj) - del_first_y))/first.shape[0])**2)**.5
+                    else:
+                        a = 1
+                        b = 1
 
                     if transform == 'left':
                         background[int(y_proj), int(x_proj), :] = (b*second[y, x, :] + a*background[int(y_proj), int(x_proj), :])/(a+b)
