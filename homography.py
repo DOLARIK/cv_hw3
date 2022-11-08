@@ -47,7 +47,10 @@ class RANSAC:
         
         m = 10^-9
         # affine = np.dot(np.linalg.inv(s), d)
-        affine = np.dot(np.dot(np.linalg.inv(np.dot(s.T, s) + np.eye(np.dot(s.T, s).shape[1])*m), s.T), d)
+        try:
+            affine = np.dot(np.dot(np.linalg.inv(np.dot(s.T,s)                                     ), s.T), d)
+        except:
+            affine = np.dot(np.dot(np.linalg.inv(np.dot(s.T, s) + np.eye(np.dot(s.T, s).shape[1])*m), s.T), d)
         
         # affine = s \ d
         
