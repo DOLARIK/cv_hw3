@@ -8,17 +8,17 @@ The assignment solution can be found in
 
 The following result can be found in location: `results/ncc_pairs.png`
 
-![ncc_pairs](./results/ncc_pairs.png)
+![ncc_pairs](./results/ncc_pairs.PNG)
 
 ## Panorama
 
 The following result can be found in location: `results/panorama_left_transform_edge_blend.png`
 
-![panorama_left_transform_edge_blend](./results/panorama_left_transform_edge_blend.png)
+![panorama_left_transform_edge_blend](./results/panorama_left_transform_edge_blend.PNG)
 
 The following result can be found in location: `results/panorama_right_transform_edge_blend.png`
 
-![panorama_right_transform_edge_blend](./results/panorama_right_transform_edge_blend.png)
+![panorama_right_transform_edge_blend](./results/panorama_right_transform_edge_blend.PNG)
 
 # Dependencies
 
